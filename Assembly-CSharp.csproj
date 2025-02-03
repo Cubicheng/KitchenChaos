@@ -63,16 +63,22 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Counters\ProgressBarUI.cs" />
     <Compile Include="Assets\Scripts\Counters\SelectedCounterVisual.cs" />
+    <Compile Include="Assets\Scripts\IProgressBarParent.cs" />
     <Compile Include="Assets\Scripts\Counters\CuttingCounterVIsual.cs" />
     <Compile Include="Assets\FastScriptReload\Samples\Basic\Scripts\Graph.cs" />
     <Compile Include="Assets\FastScriptReload\Samples\Basic\Scripts\FunctionLibrary.cs" />
+    <Compile Include="Assets\Scripts\CookObjectSO.cs" />
     <Compile Include="Assets\Scripts\KitchenObjectSO.cs" />
     <Compile Include="Assets\Scripts\Counters\ContainerCounterVIsual.cs" />
     <Compile Include="Assets\Scripts\Counters\ClearCounter.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\LookAt.cs" />
     <Compile Include="Assets\Scripts\GameInput.cs" />
     <Compile Include="Assets\Scripts\Counters\ContainerCouner.cs" />
     <Compile Include="Assets\Scripts\Counters\BaseCounter.cs" />
+    <Compile Include="Assets\Scripts\Counters\TrashCounter.cs" />
+    <Compile Include="Assets\Scripts\Counters\StoveCounter.cs" />
+    <Compile Include="Assets\Scripts\Counters\StoveCounterVisual.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\CuttingRecipeSO.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />

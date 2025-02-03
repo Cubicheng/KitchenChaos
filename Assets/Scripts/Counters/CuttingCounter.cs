@@ -1,25 +1,21 @@
 using System;
 using UnityEngine;
+using static IProgressBarParent;
 
-public class CuttingCounter : BaseCounter {
+public class CuttingCounter : BaseCounter, IProgressBarParent {
 
     public event EventHandler<OnProgressBarChangedEventArgs> OnProgressBarChanged;
-    public class OnProgressBarChangedEventArgs : EventArgs {
-        public float progress;
-    }
 
     public event EventHandler OnPlayerCut;
 
-    [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private CuttingRecipeSO[] cuttingRecipeSOs;
     private int cuttingCnt;
 
     public override void Interact(Player player) {
-        Debug.Log(player.HasKitchenObject());
         if (!HasKitchenObject()) {
-            if (player.HasKitchenObject()) {
-                player.GetKitchenObject().SetKitchenObjectParent(this);
-                if (GetMaxCuttingCnt(GetKitchenObject()) != -1) {
+            if (player.HasKitchenObject()) { 
+                if (GetMaxCuttingCnt(player.GetKitchenObject()) != -1) {
+                    player.GetKitchenObject().SetKitchenObjectParent(this);
                     cuttingCnt = 0;
                     OnProgressBarChanged?.Invoke(this, new OnProgressBarChangedEventArgs() { progress = 0 });
                 }
