@@ -17,6 +17,10 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent {
         return attachPoint;
     }
 
+    public void SetAttachPoint(Vector3 position) {
+        this.attachPoint.position = position;
+    }
+
     public KitchenObject GetKitchenObject() {
         return kitchenObject;
     }

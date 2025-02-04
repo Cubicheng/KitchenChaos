@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class KitchenObject : MonoBehaviour
-{
+public class KitchenObject : MonoBehaviour{
+
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
     [SerializeField] private IKitchenObjectParent kitchenObjectParent;
@@ -10,7 +10,7 @@ public class KitchenObject : MonoBehaviour
         return kitchenObjectSO;
     }
 
-    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent) {
+    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent, float offset_y = 0) {
         if (this.kitchenObjectParent != null) {
             this.kitchenObjectParent.ClearKitchenObject();
         }
@@ -18,7 +18,7 @@ public class KitchenObject : MonoBehaviour
         this.kitchenObjectParent = kitchenObjectParent;
         this.kitchenObjectParent.SetKitchenObject(this);
         transform.parent = kitchenObjectParent.GetAttachPoint();
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = new Vector3(0, offset_y, 0);
     }
 
     public IKitchenObjectParent GetKitchenObjectParent() {
@@ -30,9 +30,9 @@ public class KitchenObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public static Transform SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent) {
+    public static Transform SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent, float offset_y = 0) {
         Transform kitchenObject = Instantiate(kitchenObjectSO.prefab);
-        kitchenObject.GetComponent<KitchenObject>().SetKitchenObjectParent(kitchenObjectParent);
+        kitchenObject.GetComponent<KitchenObject>().SetKitchenObjectParent(kitchenObjectParent, offset_y);
         return kitchenObject;
     }
 

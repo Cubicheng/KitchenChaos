@@ -15,6 +15,8 @@ public class StoveCounter : BaseCounter,IProgressBarParent {
     [SerializeField] private CookObjectSO[] cookObjectSOs;
     private float cookDuration;
 
+    private const string UncookedName = "MeatPattyUncooked";
+
     public enum State {
         Idle,
         Cooking,
@@ -28,7 +30,11 @@ public class StoveCounter : BaseCounter,IProgressBarParent {
             case State.Idle:
                 if (GetCookOutput(GetKitchenObject()) != null) {
                     cookDuration = 0;
-                    SetState(State.Cooking);
+                    if (GetKitchenObject().GetKitchenObjectSO().name == UncookedName) {
+                        SetState(State.Cooking);
+                    }else {
+                        SetState(State.Burning);
+                    }
                 }
                 break;
             case State.Cooking:
