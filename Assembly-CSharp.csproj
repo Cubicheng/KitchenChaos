@@ -73,16 +73,20 @@
     <Compile Include="Assets\Scripts\Counters\ClearCounter.cs" />
     <Compile Include="Assets\Scripts\Counters\PlateCounterVisual.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlateIconUI.cs" />
     <Compile Include="Assets\Scripts\LookAt.cs" />
     <Compile Include="Assets\Scripts\GameInput.cs" />
     <Compile Include="Assets\Scripts\Counters\ContainerCouner.cs" />
     <Compile Include="Assets\Scripts\Counters\BaseCounter.cs" />
     <Compile Include="Assets\Scripts\Counters\TrashCounter.cs" />
+    <Compile Include="Assets\Scripts\PlateCompleteVisual.cs" />
     <Compile Include="Assets\Scripts\Counters\PlateCounter.cs" />
     <Compile Include="Assets\Scripts\Counters\StoveCounter.cs" />
+    <Compile Include="Assets\Scripts\PlateIconTemplate.cs" />
     <Compile Include="Assets\Scripts\Counters\StoveCounterVisual.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\CuttingRecipeSO.cs" />
+    <Compile Include="Assets\Scripts\PlateKitchenObject.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\Scripts\Counters\CuttingCounter.cs" />
     <Compile Include="Assets\Scripts\IKitchenObjectParent.cs" />
@@ -1259,6 +1263,10 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor.ConversionSystem">

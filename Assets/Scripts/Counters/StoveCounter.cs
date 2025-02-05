@@ -3,7 +3,7 @@ using UnityEngine;
 using static CuttingCounter;
 using static IProgressBarParent;
 
-public class StoveCounter : BaseCounter,IProgressBarParent {
+public class StoveCounter : BaseCounter, IProgressBarParent {
 
     public event EventHandler<OnProgressBarChangedEventArgs> OnProgressBarChanged;
 
@@ -93,6 +93,12 @@ public class StoveCounter : BaseCounter,IProgressBarParent {
         } else {
             if (!player.HasKitchenObject()) {
                 GetKitchenObject().SetKitchenObjectParent(player);
+            } else {
+                if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
+                    if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) {
+                        GetKitchenObject().DestroySelf();
+                    }
+                }
             }
         }
     }
