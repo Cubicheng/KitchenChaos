@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlateCounter : BaseCounter{
@@ -15,7 +16,7 @@ public class PlateCounter : BaseCounter{
     private float duration;
 
     private void Start() {
-        duration = 0;
+        duration = 4;
         plateNum = 0;
     }
 
@@ -44,11 +45,20 @@ public class PlateCounter : BaseCounter{
         if (plateNum == 0) {
             return;
         }
-        if (player.HasKitchenObject()) {
+        if (!player.HasKitchenObject()) {
+            RemovePlate();
+            KitchenObject.SpawnKitchenObject(plateObjectSO, player);
             return;
         }
+        if (!plateObjectSO.prefab.GetComponent<PlateKitchenObject>().CanAdd(player.GetKitchenObject().GetKitchenObjectSO())) {
+            return;
+        }
+        KitchenObjectSO kitchenObjectSO = player.GetKitchenObject().GetKitchenObjectSO();
+        player.GetKitchenObject().DestroySelf();
         RemovePlate();
         KitchenObject.SpawnKitchenObject(plateObjectSO, player);
+        player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject);
+        plateKitchenObject.TryAddIngredient(kitchenObjectSO);
     }
 
     public override void InteractAlt(Player player) {

@@ -14,7 +14,7 @@ public class PlateCompleteVisual : MonoBehaviour{
     [SerializeField] private PlateKitchenObject plateKitchenObject;
     [SerializeField] private List<Ingredient> ingredients;
 
-    private void Start() {
+    private void Awake() {
         plateKitchenObject.OnIngredientAdded += PlateKitchenObject_OnIngredientAdded;
     }
 

@@ -26,6 +26,10 @@ public class StoveCounter : BaseCounter, IProgressBarParent {
     private State state = State.Idle;
 
     private void Update() {
+        if (!HasKitchenObject()) {
+            SetState(State.Idle);
+            return;
+        }
         switch (state) {
             case State.Idle:
                 if (GetCookOutput(GetKitchenObject()) != null) {
@@ -40,7 +44,6 @@ public class StoveCounter : BaseCounter, IProgressBarParent {
             case State.Cooking:
                 if (!HasKitchenObject()) {
                     SetState(State.Idle);
-                    SetProgressBar(1);
                     break;
                 }
 
@@ -58,7 +61,6 @@ public class StoveCounter : BaseCounter, IProgressBarParent {
             case State.Burning:
                 if (!HasKitchenObject()) {
                     SetState(State.Idle);
-                    SetProgressBar(1);
                     break;
                 }
 
@@ -79,6 +81,9 @@ public class StoveCounter : BaseCounter, IProgressBarParent {
     }
 
     private void SetState(State state) {
+        if (state == State.Idle) {
+            SetProgressBar(1);
+        }
         this.state = state;
         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = this.state });
     }

@@ -5,7 +5,7 @@ public class PlateIconUI : MonoBehaviour{
     [SerializeField] private PlateKitchenObject plateKitchenObject;
     [SerializeField] private PlateIconTemplate plateIconTemplate;
 
-    private void Start() {
+    private void Awake() {
         plateKitchenObject.OnIngredientAdded += PlateKitchenObject_OnIngredientAdded;
     }
 

@@ -17,6 +17,9 @@ public class PlateKitchenObject : KitchenObject {
     private void Awake() {
         kitchenObjectSOs = new List<KitchenObjectSO>();
     }
+    public bool CanAdd(KitchenObjectSO kitchenObjectSO) {
+        return validKitchenObjects.Contains(kitchenObjectSO);
+    }
 
     public bool TryAddIngredient(KitchenObjectSO kitchenObjectSO) {
         if (!validKitchenObjects.Contains(kitchenObjectSO)) {
@@ -28,6 +31,14 @@ public class PlateKitchenObject : KitchenObject {
         kitchenObjectSOs.Add(kitchenObjectSO);
         OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs() { kitchenObjectSO = kitchenObjectSO });
         return true;
+    }
+
+    public int GetCount() {
+        return kitchenObjectSOs.Count;
+    }
+
+    public KitchenObjectSO GetKitchenObjectSO(int index) {
+        return kitchenObjectSOs[index];
     }
 
 }
