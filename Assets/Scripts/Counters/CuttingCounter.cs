@@ -4,6 +4,8 @@ using static IProgressBarParent;
 
 public class CuttingCounter : BaseCounter, IProgressBarParent {
 
+    public static event EventHandler OnAnyCut;
+
     public event EventHandler<OnProgressBarChangedEventArgs> OnProgressBarChanged;
 
     public event EventHandler OnPlayerCut;
@@ -46,6 +48,7 @@ public class CuttingCounter : BaseCounter, IProgressBarParent {
         int MaxCuttingCnt = GetMaxCuttingCnt(GetKitchenObject());
         cuttingCnt++;
         OnPlayerCut?.Invoke(this, EventArgs.Empty);
+        OnAnyCut?.Invoke(this, EventArgs.Empty);
         OnProgressBarChanged?.Invoke(this, new OnProgressBarChangedEventArgs() { progress = (float)cuttingCnt / (float)MaxCuttingCnt });
         if (cuttingCnt < MaxCuttingCnt) {
             return;

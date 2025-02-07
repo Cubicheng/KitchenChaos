@@ -7,6 +7,8 @@ public class DeliveryManager : MonoBehaviour {
 
     public event EventHandler<RecipeEventArgs> OnRecipeAdd;
     public event EventHandler<RecipeEventArgs> OnRecipeRemove;
+    public event EventHandler OnRecipeAccepted;
+    public event EventHandler OnRecipeRejected;
 
     public class RecipeEventArgs : EventArgs {
         public RecipeSO recipeSO;
@@ -44,15 +46,20 @@ public class DeliveryManager : MonoBehaviour {
         waitingRecipeSOList.Add(recipeSO);
         OnRecipeAdd?.Invoke(this, new RecipeEventArgs() { recipeSO = recipeSO });
     }
-
     public bool DeliverRecipe(PlateKitchenObject plateKitchenObject) {
+        if (plateKitchenObject == null) {
+            OnRecipeRejected?.Invoke(this, new RecipeEventArgs());
+            return false;
+        }
         foreach (RecipeSO recipeSO in waitingRecipeSOList) {
             if (MatchRecipe(plateKitchenObject, recipeSO)) {
                 waitingRecipeSOList.Remove(recipeSO);
                 OnRecipeRemove?.Invoke(this, new RecipeEventArgs() { recipeSO = recipeSO });
+                OnRecipeAccepted?.Invoke(this, new RecipeEventArgs());
                 return true;
             }
         }
+        OnRecipeRejected?.Invoke(this, new RecipeEventArgs());
         return false;
     }
 
