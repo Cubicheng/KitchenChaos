@@ -22,6 +22,7 @@ public class DeliveryManager : MonoBehaviour {
     private const float DELTA_TIME = 8f;
     private const int WAITING_LIST_MAX = 4;
     private float duration;
+    private int score = 0;
 
     private void Awake() {
         instance = this;
@@ -56,6 +57,7 @@ public class DeliveryManager : MonoBehaviour {
                 waitingRecipeSOList.Remove(recipeSO);
                 OnRecipeRemove?.Invoke(this, new RecipeEventArgs() { recipeSO = recipeSO });
                 OnRecipeAccepted?.Invoke(this, new RecipeEventArgs());
+                score++;
                 return true;
             }
         }
@@ -74,5 +76,9 @@ public class DeliveryManager : MonoBehaviour {
             }
         }
         return true;
+    }
+
+    public int GetScore() {
+        return score;
     }
 }
