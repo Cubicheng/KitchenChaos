@@ -49,6 +49,7 @@ public class DeliveryManager : MonoBehaviour {
     }
     public bool DeliverRecipe(PlateKitchenObject plateKitchenObject) {
         if (plateKitchenObject == null) {
+            GameInput.Instance.GamepadVibrate(1f, 1f, 0.3f);
             OnRecipeRejected?.Invoke(this, new RecipeEventArgs());
             return false;
         }
@@ -61,6 +62,7 @@ public class DeliveryManager : MonoBehaviour {
                 return true;
             }
         }
+        GameInput.Instance.GamepadVibrate(1f, 1f, 0.3f);
         OnRecipeRejected?.Invoke(this, new RecipeEventArgs());
         return false;
     }

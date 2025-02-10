@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,9 @@ public class GameInput : MonoBehaviour {
         MoveLeft,
         MoveRight,
         Interact,
-        Cut
+        Cut,
+        GamePadInteract,
+        GamePadCut
     }
 
     public event EventHandler OnInteractAction;
@@ -77,6 +80,10 @@ public class GameInput : MonoBehaviour {
                 return playerInputActions.Player.Interact.bindings[0].ToDisplayString();
             case Binding.Cut:
                 return playerInputActions.Player.Interact_Alt.bindings[0].ToDisplayString();
+            case Binding.GamePadInteract:
+                return playerInputActions.Player.Interact.bindings[1].ToDisplayString();
+            case Binding.GamePadCut:
+                return playerInputActions.Player.Interact_Alt.bindings[1].ToDisplayString();
         }
     }
 
@@ -112,6 +119,14 @@ public class GameInput : MonoBehaviour {
                 inputAction = playerInputActions.Player.Interact_Alt;
                 bindingIndex = 0;
                 break;
+            case Binding.GamePadInteract:
+                inputAction = playerInputActions.Player.Interact;
+                bindingIndex = 1;
+                break;
+            case Binding.GamePadCut:
+                inputAction = playerInputActions.Player.Interact_Alt;
+                bindingIndex = 1;
+                break;
         }
 
         inputAction.PerformInteractiveRebinding(bindingIndex)
@@ -124,5 +139,26 @@ public class GameInput : MonoBehaviour {
                 PlayerPrefs.Save();
             })
             .Start();
+    }
+
+    public void GamepadVibrate(float low, float high, float time) => StartCoroutine(IEGamepadVibrate(low, high, time));
+
+    public IEnumerator IEGamepadVibrate(float low, float high, float time) {
+        if (Gamepad.current == null)
+            yield break;
+
+        Gamepad.current.SetMotorSpeeds(low, high);
+        Gamepad.current.ResumeHaptics();
+        var endTime = Time.time + time;
+
+        while (Time.time < endTime) {
+            Gamepad.current.ResumeHaptics();
+            yield return null;
+        }
+
+        if (Gamepad.current == null)
+            yield break;
+
+        Gamepad.current.PauseHaptics();
     }
 }

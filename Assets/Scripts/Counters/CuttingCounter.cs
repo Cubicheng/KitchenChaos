@@ -50,6 +50,7 @@ public class CuttingCounter : BaseCounter, IProgressBarParent {
         }
         int MaxCuttingCnt = GetMaxCuttingCnt(GetKitchenObject());
         cuttingCnt++;
+        GameInput.Instance.GamepadVibrate(0.5f, 0.5f, 0.1f);
         OnPlayerCut?.Invoke(this, EventArgs.Empty);
         OnAnyCut?.Invoke(this, EventArgs.Empty);
         OnProgressBarChanged?.Invoke(this, new OnProgressBarChangedEventArgs() { progress = (float)cuttingCnt / (float)MaxCuttingCnt });

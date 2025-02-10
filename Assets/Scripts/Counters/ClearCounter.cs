@@ -27,4 +27,8 @@ public class ClearCounter : BaseCounter {
             }
         }
     }
+
+    public override void InteractAlt(Player player) {
+        
+    }
 }

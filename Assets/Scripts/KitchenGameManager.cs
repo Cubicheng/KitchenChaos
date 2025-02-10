@@ -18,7 +18,7 @@ public class KitchenGameManager : MonoBehaviour {
     }
 
     private const float DELTA_TIME = 1f;
-    private const float FULL_TIME = 20f;
+    private const float FULL_TIME = 90f;
 
     private State state;
     private float waitingToStartTimer = 1f;

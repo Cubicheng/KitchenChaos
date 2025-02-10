@@ -16,6 +16,8 @@ public class OptionsUI : MonoBehaviour {
     [SerializeField] private Button MoveRightButton;
     [SerializeField] private Button InteractButton;
     [SerializeField] private Button CutButton;
+    [SerializeField] private Button GamepadInteractButton;
+    [SerializeField] private Button GamepadCutButton;
 
     [SerializeField] private TextMeshProUGUI MoveUpButtonText;
     [SerializeField] private TextMeshProUGUI MoveDownButtonText;
@@ -23,6 +25,8 @@ public class OptionsUI : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI MoveRightButtonText;
     [SerializeField] private TextMeshProUGUI InteractButtonText;
     [SerializeField] private TextMeshProUGUI CutButtonText;
+    [SerializeField] private TextMeshProUGUI GamepadInteractButtonText;
+    [SerializeField] private TextMeshProUGUI GamepadCutButtonText;
 
     [SerializeField] private Transform pressToRebind;
 
@@ -62,6 +66,14 @@ public class OptionsUI : MonoBehaviour {
         CutButton.onClick.AddListener(() => {
             Rebind(GameInput.Binding.Cut);
         });
+
+        GamepadInteractButton.onClick.AddListener(() => {
+            Rebind(GameInput.Binding.GamePadInteract);
+        });
+
+        GamepadCutButton.onClick.AddListener(() => {
+            Rebind(GameInput.Binding.GamePadCut);
+        });
     }
 
     private void GameInput_OnPauseAction(object sender, System.EventArgs e) {
@@ -75,6 +87,8 @@ public class OptionsUI : MonoBehaviour {
         MoveRightButtonText.text = GameInput.Instance.GetBindingText(GameInput.Binding.MoveRight);
         InteractButtonText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Interact);
         CutButtonText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Cut);
+        GamepadCutButtonText.text = GameInput.Instance.GetBindingText(GameInput.Binding.GamePadCut);
+        GamepadInteractButtonText.text = GameInput.Instance.GetBindingText(GameInput.Binding.GamePadInteract);
     }
 
     private void Start() {
@@ -105,6 +119,7 @@ public class OptionsUI : MonoBehaviour {
     }
 
     public void Show() {
+        musicSlider.Select();
         gameObject.SetActive(true);
     }
 
