@@ -5,6 +5,9 @@ using static IProgressBarParent;
 public class CuttingCounter : BaseCounter, IProgressBarParent {
 
     public static event EventHandler OnAnyCut;
+    new public static void ResetStaticData() {
+        OnAnyCut = null;
+    }
 
     public event EventHandler<OnProgressBarChangedEventArgs> OnProgressBarChanged;
 

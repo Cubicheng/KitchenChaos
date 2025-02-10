@@ -9,7 +9,6 @@ public class GameStartCountDownUI : MonoBehaviour {
     private void Start() {
         KitchenGameManager.Instance.OnStateChanged += KitchenGameManager_OnStateChanged;
         KitchenGameManager.Instance.OnCntChanged += KitchenGameManager_OnCntChanged;
-        Hide();
     }
 
     private void KitchenGameManager_OnCntChanged(object sender, EventArgs e) {
@@ -33,6 +32,6 @@ public class GameStartCountDownUI : MonoBehaviour {
         countDownText.gameObject.SetActive(true);
     }
     private void Hide() {
-        countDownText.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

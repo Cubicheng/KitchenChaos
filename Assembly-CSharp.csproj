@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Counters\DeliveryCounter.cs" />
+    <Compile Include="Assets\Scripts\ResetStaticDataManager.cs" />
     <Compile Include="Assets\Scripts\Counters\SelectedCounterVisual.cs" />
     <Compile Include="Assets\Scripts\IProgressBarParent.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Assets\Scripts\Counters\StoveCounter.cs" />
     <Compile Include="Assets\Scripts\PlayerSounds.cs" />
     <Compile Include="Assets\Scripts\PlateIconTemplate.cs" />
+    <Compile Include="Assets\Scripts\UI\OptionsUI.cs" />
     <Compile Include="Assets\Scripts\Counters\StoveCounterVisual.cs" />
     <Compile Include="Assets\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
@@ -97,7 +99,9 @@
     <Compile Include="Assets\Scripts\UI\GameOverUI.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressBarUI.cs" />
     <Compile Include="Assets\Scripts\KitchenGameManager.cs" />
+    <Compile Include="Assets\Scripts\MusicManager.cs" />
     <Compile Include="Assets\Scripts\UI\MainMenuUI.cs" />
+    <Compile Include="Assets\Scripts\UI\GamePauseUI.cs" />
     <Compile Include="Assets\Scripts\LoaderCallback.cs" />
     <Compile Include="Assets\Scripts\PlateKitchenObject.cs" />
     <Compile Include="Assets\Scripts\UI\GamePlayingClockUI.cs" />

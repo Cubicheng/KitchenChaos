@@ -16,7 +16,7 @@ public class PlateCounter : BaseCounter{
     private float duration;
 
     private void Start() {
-        duration = 4;
+        duration = 0;
         plateNum = 0;
     }
 

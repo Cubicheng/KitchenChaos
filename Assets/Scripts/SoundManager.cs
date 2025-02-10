@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
+    private const float MAX_VOLUME = 0.6f;
+
+    public const string MUSIC_VOLUME = "MusicVolume";
+    public const string SFX_VOLUME = "SFXVolume";
+
     public static SoundManager instance { get; private set; }
     private void Awake() {
         instance = this;
@@ -45,14 +50,14 @@ public class SoundManager : MonoBehaviour {
         PlaySound(audioClipRefsSO.deliveryRejected);
     }
 
-    private void PlaySound(AudioClip[] audioClips, float volume = 0.3f) {
+    private void PlaySound(AudioClip[] audioClips, float volume = MAX_VOLUME) {
         Vector3 position = Camera.main.transform.position;
-        AudioSource.PlayClipAtPoint(audioClips[Random.Range(0, audioClips.Length)], position, volume);
+        AudioSource.PlayClipAtPoint(audioClips[Random.Range(0, audioClips.Length)], position, volume * PlayerPrefs.GetFloat(SFX_VOLUME));
     }
 
-    private void PlaySound(AudioClip audioClip, float volume = 0.3f) {
+    private void PlaySound(AudioClip audioClip, float volume = MAX_VOLUME) {
         Vector3 position = Camera.main.transform.position;
-        AudioSource.PlayClipAtPoint(audioClip, position, volume);
+        AudioSource.PlayClipAtPoint(audioClip, position, volume * PlayerPrefs.GetFloat(SFX_VOLUME));
     }
     
 }

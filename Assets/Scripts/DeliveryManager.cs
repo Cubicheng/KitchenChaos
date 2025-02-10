@@ -30,7 +30,7 @@ public class DeliveryManager : MonoBehaviour {
     }
 
     private void Start() {
-        duration = DELTA_TIME;
+        duration = 4;
     }
 
     private void Update() {
