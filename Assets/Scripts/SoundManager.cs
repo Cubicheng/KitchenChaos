@@ -26,6 +26,10 @@ public class SoundManager : MonoBehaviour {
         PlaySound(audioClipRefsSO.footstep);
     }
 
+    public void PlayWarningSound() {
+        PlaySound(audioClipRefsSO.warning);
+    }
+
     private void TrashCounter_OnTranshed(object sender, System.EventArgs e) {
         PlaySound(audioClipRefsSO.trash);
     }
@@ -47,7 +51,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     private void DeliveryManager_OnRecipeRejected(object sender, System.EventArgs e) {
-        PlaySound(audioClipRefsSO.deliveryRejected);
+        PlaySound(audioClipRefsSO.deliveryRejected, 0.3f);
     }
 
     private void PlaySound(AudioClip[] audioClips, float volume = MAX_VOLUME) {

@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class GameStartCountDownUI : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI countDownText;
+    private const string NUMBER_POP = "NumberPop";
+    private Animator animator;
+
     private int num = 3;
+
+    private void Awake() {
+        animator = GetComponent<Animator>();
+    }
 
     private void Start() {
         KitchenGameManager.Instance.OnStateChanged += KitchenGameManager_OnStateChanged;
@@ -13,6 +20,8 @@ public class GameStartCountDownUI : MonoBehaviour {
 
     private void KitchenGameManager_OnCntChanged(object sender, EventArgs e) {
         countDownText.text = num.ToString();
+        animator.SetTrigger(NUMBER_POP);
+        SoundManager.instance.PlayWarningSound();
         num--;
     }
 

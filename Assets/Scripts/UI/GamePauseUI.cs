@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -40,7 +41,9 @@ public class GamePauseUI : MonoBehaviour {
     }
 
     public void Show() {
-        ResumeButton.Select();
+        if (Gamepad.current != null) {
+            ResumeButton.Select();
+        }
         gameObject.SetActive(true);
     }
 

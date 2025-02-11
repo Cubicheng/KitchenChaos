@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 public class OptionsUI : MonoBehaviour {
@@ -119,7 +121,9 @@ public class OptionsUI : MonoBehaviour {
     }
 
     public void Show() {
-        musicSlider.Select();
+        if (Gamepad.current != null) {
+            musicSlider.Select();
+        }
         gameObject.SetActive(true);
     }
 

@@ -8,6 +8,12 @@ public class StoveCounter : BaseCounter, IProgressBarParent {
     public event EventHandler<OnProgressBarChangedEventArgs> OnProgressBarChanged;
 
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+
+    public event EventHandler OnWarningShow;
+    public event EventHandler OnWarningHide;
+
+    private bool isWarning = false;
+
     public class OnStateChangedEventArgs : EventArgs {
         public State state;
     }
@@ -66,6 +72,13 @@ public class StoveCounter : BaseCounter, IProgressBarParent {
 
                 cookDuration += Time.deltaTime;
                 SetProgressBar(cookDuration / GetMaxCookTime(GetKitchenObject()));
+
+                if (!isWarning && cookDuration / GetMaxCookTime(GetKitchenObject()) > 0.5f) {
+                    OnWarningShow?.Invoke(this, EventArgs.Empty);
+                    isWarning = true;
+                    Debug.Log(isWarning);
+                }
+                
                 if (cookDuration >= GetMaxCookTime(GetKitchenObject())) {
                     KitchenObjectSO kitchenObjectSO = GetCookOutput(GetKitchenObject());
                     GetKitchenObject().DestroySelf();
@@ -83,6 +96,8 @@ public class StoveCounter : BaseCounter, IProgressBarParent {
     private void SetState(State state) {
         if (state == State.Idle) {
             SetProgressBar(1);
+            OnWarningHide?.Invoke(this, EventArgs.Empty);
+            isWarning = false;
         }
         this.state = state;
         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs { state = this.state });

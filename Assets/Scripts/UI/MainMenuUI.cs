@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -14,5 +15,9 @@ public class MainMenuUI : MonoBehaviour {
         QuitButton.onClick.AddListener(() => {
             Application.Quit();
         });
+
+        if (Gamepad.current != null) {
+            PlayButton.Select();
+        }
     }
 }

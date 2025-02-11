@@ -68,6 +68,10 @@ public class KitchenGameManager : MonoBehaviour {
         }
     }
 
+    public int GetCnt() {
+        return cnt;
+    }
+
     private void SetState(State state) {
         this.state = state;
         OnStateChanged?.Invoke(this, new EventArgs());
