@@ -10,6 +10,8 @@ public class DeliveryManager : MonoBehaviour {
     public event EventHandler OnRecipeAccepted;
     public event EventHandler OnRecipeRejected;
 
+    public event EventHandler OnScoreIncreased;
+
     public class RecipeEventArgs : EventArgs {
         public RecipeSO recipeSO;
     }
@@ -59,6 +61,7 @@ public class DeliveryManager : MonoBehaviour {
                 OnRecipeRemove?.Invoke(this, new RecipeEventArgs() { recipeSO = recipeSO });
                 OnRecipeAccepted?.Invoke(this, new RecipeEventArgs());
                 score++;
+                OnScoreIncreased?.Invoke(this, new RecipeEventArgs());
                 return true;
             }
         }

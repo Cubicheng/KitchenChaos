@@ -6,6 +6,15 @@ public class MusicManager : MonoBehaviour {
     public static MusicManager Instance { get; private set; }
 
     private void Awake() {
+
+        if (!PlayerPrefs.HasKey(SoundManager.MUSIC_VOLUME)) {
+            PlayerPrefs.SetFloat(SoundManager.MUSIC_VOLUME, 0.5f);
+        }
+
+        if (!PlayerPrefs.HasKey(SoundManager.SFX_VOLUME)) {
+            PlayerPrefs.SetFloat(SoundManager.SFX_VOLUME, 0.5f);
+        }
+
         Instance = this;
         audioSource = GetComponent<AudioSource>();
         SetMusicVolume();

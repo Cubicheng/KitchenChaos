@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class GamePauseUI : MonoBehaviour {
         });
         MainMenuButton.onClick.AddListener(() => {
             Time.timeScale = 1;
-            SceneManager.LoadScene((int)Loader.Scene.MainMenu);
+            Loader.LoadScene(Loader.Scene.MainMenu);
         });
         OptionsButton.onClick.AddListener(() => {
             Hide();
@@ -43,6 +44,8 @@ public class GamePauseUI : MonoBehaviour {
     public void Show() {
         if (Gamepad.current != null) {
             ResumeButton.Select();
+        } else {
+            EventSystem.current.SetSelectedGameObject(null);
         }
         gameObject.SetActive(true);
     }

@@ -22,7 +22,6 @@ public class DeliveryManagerUI : MonoBehaviour {
     }
 
     private void DeliveryManager_OnRecipeRemove(object sender, DeliveryManager.RecipeEventArgs e) {
-        Debug.Log(e.recipeSO);
         foreach(RecipeTemplate recipeIconTemplate in recipes) {
             if (recipeIconTemplate.GetRecipeSO() == e.recipeSO) {
                 recipes.Remove(recipeIconTemplate);

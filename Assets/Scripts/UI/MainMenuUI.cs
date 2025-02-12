@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +19,8 @@ public class MainMenuUI : MonoBehaviour {
 
         if (Gamepad.current != null) {
             PlayButton.Select();
+        } else {
+            EventSystem.current.SetSelectedGameObject(null);
         }
     }
 }

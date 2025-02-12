@@ -7,10 +7,16 @@ public class ContainerCouner : BaseCounter {
     public event EventHandler OnPlayerGrabbed;
 
     public override void Interact(Player player) {
-        if (player.HasKitchenObject()) {
+        if (!player.HasKitchenObject()) {
+            KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
+            OnPlayerGrabbed?.Invoke(this, EventArgs.Empty);
             return;
         }
-        KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
-        OnPlayerGrabbed?.Invoke(this, EventArgs.Empty);
+        if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
+            if (plateKitchenObject.TryAddIngredient(kitchenObjectSO)) {
+                OnPlayerGrabbed?.Invoke(this, EventArgs.Empty);
+            }
+            return;
+        }
     }
 }
